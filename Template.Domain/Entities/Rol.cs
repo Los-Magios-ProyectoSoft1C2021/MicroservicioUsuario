@@ -11,9 +11,6 @@ namespace Template.Domain.Entities
         public string Nombre { get; set; }
 
         public string Descripcion { get; set; }
-
-
-        // Relación con la tabla Usuario
-        public Usuario Usuario { get; set; }
+        public ICollection<Usuario> Usuario { get; set; }            
     }
 }

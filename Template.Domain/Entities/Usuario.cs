@@ -8,7 +8,7 @@ namespace Template.Domain.Entities
     {
         public Guid UsuarioId { get; set; }
 
-        public Guid Rol { get; set; }
+        public Guid RolId { get; set; }
 
         public string Nombre { get; set; }
 
@@ -28,8 +28,6 @@ namespace Template.Domain.Entities
 
         public string Imagen { get; set; }
 
-
-        // Relación con la tabla Rol
-        public List<Rol> Roles { get; set; }
+        public virtual Rol RolNavegator { get; set; }
     }
 }

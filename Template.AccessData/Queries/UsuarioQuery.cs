@@ -14,12 +14,10 @@ namespace Template.AccessData.Queries
     public class UsuarioQuery : IUsuarioQuery
     {
         private readonly UsuarioDbContext _context;
-        private readonly int _pageSize;
 
-        public UsuarioQuery(UsuarioDbContext context, IConfiguration configuration)
+        public UsuarioQuery(UsuarioDbContext context)
         {
-            _context = context;
-            _pageSize = int.Parse(configuration.GetSection("PageSize").Value);
+            _context = context;           
         }
 
         public async Task<List<ResponseUsuarioDto>> GetAll()
@@ -28,7 +26,7 @@ namespace Template.AccessData.Queries
                 .Select(u => new ResponseUsuarioDto
                 {
                     UsuarioId = u.UsuarioId,
-                    Rol = u.Rol,
+                    RolId = u.RolId,
                     Nombre = u.Nombre,
                     Apellido =u.Apellido,
                     NombreUsuario = u.NombreUsuario,

@@ -6,7 +6,7 @@ namespace Template.Domain.DTOs.Request
 {
     public class RequestUsuarioDto
     {
-        public Guid Rol { get; set; }
+        public Guid RolId { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string NombreUsuario { get; set; }

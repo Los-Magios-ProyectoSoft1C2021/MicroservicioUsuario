@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Template.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Template.AccessData.Configurations
 {
@@ -46,6 +49,9 @@ namespace Template.AccessData.Configurations
             usuario.Property(p => p.Nacionalidad)
                    .IsRequired(true)
                    .HasMaxLength(128);
+
+            usuario.HasOne<Rol>(p => p.RolNavegator).WithMany(p => p.Usuario).HasForeignKey(k => k.RolId);
         }
     }
+
 }

@@ -35,14 +35,23 @@ namespace Template.AccessData.Migrations
                         .HasMaxLength(24)
                         .HasColumnType("nvarchar(24)");
 
-                    b.Property<Guid?>("UsuarioId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("RolId");
 
-                    b.HasIndex("UsuarioId");
-
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            RolId = new Guid("9e9b8c21-6a89-4e5b-aff6-8ab6a20fb484"),
+                            Descripcion = "Usuario el cual es capaz de reservar hoteles.",
+                            Nombre = "Usuario"
+                        },
+                        new
+                        {
+                            RolId = new Guid("7d8147b8-9461-48cc-b6c2-7d252485b011"),
+                            Descripcion = "El admin es aquel que puede ver los usuarios que hicieron reservas y modificar info de los hoteles",
+                            Nombre = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Usuario", b =>
@@ -89,7 +98,7 @@ namespace Template.AccessData.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
-                    b.Property<Guid>("Rol")
+                    b.Property<Guid>("RolId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Telefono")
@@ -99,21 +108,25 @@ namespace Template.AccessData.Migrations
 
                     b.HasKey("UsuarioId");
 
+                    b.HasIndex("RolId");
+
                     b.ToTable("Usuarios");
-                });
-
-            modelBuilder.Entity("Template.Domain.Entities.Rol", b =>
-                {
-                    b.HasOne("Template.Domain.Entities.Usuario", "Usuario")
-                        .WithMany("Roles")
-                        .HasForeignKey("UsuarioId");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Usuario", b =>
                 {
-                    b.Navigation("Roles");
+                    b.HasOne("Template.Domain.Entities.Rol", "RolNavegator")
+                        .WithMany("Usuario")
+                        .HasForeignKey("RolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RolNavegator");
+                });
+
+            modelBuilder.Entity("Template.Domain.Entities.Rol", b =>
+                {
+                    b.Navigation("Usuario");
                 });
 #pragma warning restore 612, 618
         }
