@@ -1,0 +1,9 @@
+E:\Users\tobia\Source\Repos\Los-Magios-ProyectoSoft1C2021\booking-unaj\BookingUnajPS\Template.Domain\bin\Debug\netcoreapp3.1\Template.Domain.deps.json
+E:\Users\tobia\Source\Repos\Los-Magios-ProyectoSoft1C2021\booking-unaj\BookingUnajPS\Template.Domain\bin\Debug\netcoreapp3.1\Template.Domain.dll
+E:\Users\tobia\Source\Repos\Los-Magios-ProyectoSoft1C2021\booking-unaj\BookingUnajPS\Template.Domain\bin\Debug\netcoreapp3.1\Template.Domain.pdb
+E:\Users\tobia\Source\Repos\Los-Magios-ProyectoSoft1C2021\booking-unaj\BookingUnajPS\Template.Domain\obj\Debug\netcoreapp3.1\Template.Domain.csprojAssemblyReference.cache
+E:\Users\tobia\Source\Repos\Los-Magios-ProyectoSoft1C2021\booking-unaj\BookingUnajPS\Template.Domain\obj\Debug\netcoreapp3.1\Template.Domain.AssemblyInfoInputs.cache
+E:\Users\tobia\Source\Repos\Los-Magios-ProyectoSoft1C2021\booking-unaj\BookingUnajPS\Template.Domain\obj\Debug\netcoreapp3.1\Template.Domain.AssemblyInfo.cs
+E:\Users\tobia\Source\Repos\Los-Magios-ProyectoSoft1C2021\booking-unaj\BookingUnajPS\Template.Domain\obj\Debug\netcoreapp3.1\Template.Domain.dll
+E:\Users\tobia\Source\Repos\Los-Magios-ProyectoSoft1C2021\booking-unaj\BookingUnajPS\Template.Domain\obj\Debug\netcoreapp3.1\Template.Domain.pdb
+E:\Users\tobia\Source\Repos\Los-Magios-ProyectoSoft1C2021\booking-unaj\BookingUnajPS\Template.Domain\obj\Debug\netcoreapp3.1\Template.Domain.csproj.CoreCompileInputs.cache
