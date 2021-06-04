@@ -6,7 +6,7 @@ namespace Template.Domain.Entities
     {
         public Guid UsuarioId { get; set; }
 
-        public Guid RolId { get; set; }
+        public int RolId { get; set; }
 
         public string Nombre { get; set; }
 

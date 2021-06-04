@@ -23,7 +23,7 @@ namespace Template.AccessData.Queries
                 .Select(u => new ResponseUsuarioDto
                 {
                     UsuarioId = u.UsuarioId,
-                    RolId = u.RolId,
+                    Rol = u.RolNavegator.Descripcion,
                     Nombre = u.Nombre,
                     Apellido = u.Apellido,
                     NombreUsuario = u.NombreUsuario,

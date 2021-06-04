@@ -14,12 +14,10 @@ namespace Template.API.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;
-        private readonly IConfiguration _configuration;
 
-        public UsuarioController(IUsuarioService usuarioService, IConfiguration configuration)
+        public UsuarioController(IUsuarioService usuarioService)
         {
             _usuarioService = usuarioService;
-            _configuration = configuration;
         }
 
         [HttpGet]
@@ -34,7 +32,8 @@ namespace Template.API.Controllers
         {
             var createdUsuario = await _usuarioService.Create(usuario);
             if (createdUsuario == null)
-                throw new Exception();
+                return Problem(detail: "No se ha podido crear el usuario", statusCode: 500);
+
             return Created(uri: $"api/usuario/{createdUsuario.UsuarioId}", createdUsuario);
         }
     }

@@ -10,9 +10,9 @@ namespace Template.AccessData
         {
         }
 
-        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
 
-        public DbSet<Rol> Roles { get; set; }
+        public DbSet<Rol> Rol { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
