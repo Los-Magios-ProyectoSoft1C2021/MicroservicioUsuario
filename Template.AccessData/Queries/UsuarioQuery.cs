@@ -1,12 +1,9 @@
-﻿using Template.Domain.DTOs.Response;
-using Template.Domain.Queries;
-using Microsoft.Extensions.Configuration;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Template.Domain.DTOs.Response;
+using Template.Domain.Queries;
 
 
 namespace Template.AccessData.Queries
@@ -17,7 +14,7 @@ namespace Template.AccessData.Queries
 
         public UsuarioQuery(UsuarioDbContext context)
         {
-            _context = context;           
+            _context = context;
         }
 
         public async Task<List<ResponseUsuarioDto>> GetAll()
@@ -28,7 +25,7 @@ namespace Template.AccessData.Queries
                     UsuarioId = u.UsuarioId,
                     RolId = u.RolId,
                     Nombre = u.Nombre,
-                    Apellido =u.Apellido,
+                    Apellido = u.Apellido,
                     NombreUsuario = u.NombreUsuario,
                     Contraseña = u.Contraseña,
                     Dni = u.Dni,

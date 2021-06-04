@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Template.Domain.Entities;
 using System;
+using Template.Domain.Entities;
 
 namespace Template.AccessData.Configurations
 {

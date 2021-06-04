@@ -1,14 +1,11 @@
 ﻿using AutoMapper;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Template.Domain.Commands;
 using Template.Domain.DTOs.Request;
 using Template.Domain.DTOs.Response;
 using Template.Domain.Entities;
 using Template.Domain.Queries;
-using Microsoft.AspNetCore.JsonPatch;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Template.Application.Services
 {
@@ -18,19 +15,19 @@ namespace Template.Application.Services
         private readonly IUsuarioQuery _query;
         private readonly IMapper _mapper;
 
-        public UsuarioService (IGenericsRepository repository, IUsuarioQuery query, IMapper mapper)
+        public UsuarioService(IGenericsRepository repository, IUsuarioQuery query, IMapper mapper)
         {
             _repository = repository;
             _query = query;
             _mapper = mapper;
         }
-        public async Task <ResponseUsuarioDto> Create(RequestUsuarioDto request)
+        public async Task<ResponseUsuarioDto> Create(RequestUsuarioDto request)
         {
             var u = _mapper.Map<Usuario>(request);
             await _repository.Add(u);
             return _mapper.Map<ResponseUsuarioDto>(u);
         }
-        public async Task<List<ResponseUsuarioDto>>GetAll()
+        public async Task<List<ResponseUsuarioDto>> GetAll()
         {
             return await _query.GetAll();
         }

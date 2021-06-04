@@ -1,10 +1,7 @@
-﻿using Template.Domain.DTOs.Response;
-using Template.Domain.DTOs.Request;
-using Microsoft.AspNetCore.JsonPatch;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Template.Domain.DTOs.Request;
+using Template.Domain.DTOs.Response;
 
 namespace Template.Application.Services
 {

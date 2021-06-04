@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Template.Domain.Entities;
 using Template.AccessData.Configurations;
+using Template.Domain.Entities;
 
 namespace Template.AccessData
 {
@@ -8,7 +8,7 @@ namespace Template.AccessData
     {
         public UsuarioDbContext(DbContextOptions<UsuarioDbContext> options) : base(options)
         {
-        }        
+        }
 
         public DbSet<Usuario> Usuarios { get; set; }
 

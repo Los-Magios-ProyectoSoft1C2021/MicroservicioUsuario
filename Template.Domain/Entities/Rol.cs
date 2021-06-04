@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Template.Domain.Entities
 {
@@ -11,6 +10,6 @@ namespace Template.Domain.Entities
         public string Nombre { get; set; }
 
         public string Descripcion { get; set; }
-        public ICollection<Usuario> Usuario { get; set; }            
+        public ICollection<Usuario> Usuario { get; set; }
     }
 }

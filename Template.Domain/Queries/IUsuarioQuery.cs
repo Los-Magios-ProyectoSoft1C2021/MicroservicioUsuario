@@ -1,8 +1,6 @@
-﻿using System;
-using Template.Domain.DTOs.Response;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Template.Domain.DTOs.Response;
 
 namespace Template.Domain.Queries
 {

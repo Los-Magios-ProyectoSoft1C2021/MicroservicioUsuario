@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Threading.Tasks;
 using Template.Domain.Commands;
-using System.Threading.Tasks;
 
 namespace Template.AccessData.Commands
 {
-    public class GenericsRepository:IGenericsRepository
+    public class GenericsRepository : IGenericsRepository
     {
         private readonly UsuarioDbContext _context;
-        public GenericsRepository (UsuarioDbContext context)
+        public GenericsRepository(UsuarioDbContext context)
         {
             _context = context;
         }
