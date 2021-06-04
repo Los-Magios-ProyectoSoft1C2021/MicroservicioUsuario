@@ -19,7 +19,7 @@ namespace Template.AccessData.Queries
 
         public async Task<List<ResponseUsuarioDto>> GetAll()
         {
-            var usuarios = await _context.Usuarios
+            var usuarios = await _context.Usuario
                 .Select(u => new ResponseUsuarioDto
                 {
                     UsuarioId = u.UsuarioId,

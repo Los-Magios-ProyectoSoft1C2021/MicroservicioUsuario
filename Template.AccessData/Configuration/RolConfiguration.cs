@@ -21,8 +21,8 @@ namespace Template.AccessData.Configurations
                .HasMaxLength(128);
 
             rol.HasData(
-                new Rol { RolId = Guid.NewGuid(), Nombre = "Usuario", Descripcion = "Usuario el cual es capaz de reservar hoteles." },
-                new Rol { RolId = Guid.NewGuid(), Nombre = "Admin", Descripcion = "El admin es aquel que puede ver los usuarios que hicieron reservas y modificar info de los hoteles" });
+                new Rol { RolId = 1, Nombre = "Usuario", Descripcion = "Usuario el cual es capaz de reservar hoteles." },
+                new Rol { RolId = 2, Nombre = "Admin", Descripcion = "El admin es aquel que puede ver los usuarios que hicieron reservas y modificar info de los hoteles" });
         }
     }
 
