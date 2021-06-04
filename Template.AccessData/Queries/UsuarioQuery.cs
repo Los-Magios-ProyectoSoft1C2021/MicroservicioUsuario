@@ -46,7 +46,7 @@ namespace Template.AccessData.Queries
                 .Select(u => new ResponseLoginDto
                 {
                     NombreUsuario = u.NombreUsuario,
-                    Rol = u.RolNavegator.Descripcion,
+                    Rol = u.RolNavegator.Nombre,
                     Correo = u.Correo
                 })
                 .FirstOrDefaultAsync();

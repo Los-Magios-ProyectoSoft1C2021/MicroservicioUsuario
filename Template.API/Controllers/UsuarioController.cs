@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Template.Application.Services;
 using Template.Domain.DTOs.Request;
@@ -20,7 +21,7 @@ namespace Template.API.Controllers
         {
             _usuarioService = usuarioService;
         }
-
+        
         [HttpGet]
         public async Task<ActionResult<List<ResponseUsuarioDto>>> GetUsuarios()
         {
@@ -28,6 +29,7 @@ namespace Template.API.Controllers
             return Ok(usuarios);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult> PostUsuario(RequestUsuarioDto usuario)
         {
@@ -46,7 +48,7 @@ namespace Template.API.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("/login")]
+        [HttpPost("login")]
         public async Task<ActionResult> PostLogin([FromBody] RequestLoginDto request)
         {
             string token = await _usuarioService.AuthenticateUser(request);
@@ -54,15 +56,17 @@ namespace Template.API.Controllers
         }
 
         [Authorize]
-        [HttpGet]
+        [HttpGet("rol")]
         public ActionResult GetClaim()
         {
             var currentUser = HttpContext.User;
 
-            if (currentUser.HasClaim(u => u.Type == "Rol"))
-                return Ok();
+            if (currentUser.HasClaim(u => u.Type == "Rol")) {
+                var rol = currentUser.FindFirst("Rol");
+                return Ok(rol.Value);
+            }
 
-            return NotFound();
+            return NotFound("No tiene un rol");
         }
     }
 }
