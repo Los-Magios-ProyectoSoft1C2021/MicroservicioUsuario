@@ -33,8 +33,25 @@ namespace Template.AccessData.Queries
                     Telefono = u.Telefono,
                     Nacionalidad = u.Nacionalidad,
                     Imagen = u.Imagen,
-                }).ToListAsync();
+                })
+                .ToListAsync();
+
             return usuarios;
+        }
+
+        public async Task<ResponseLoginDto> GetUsuarioLogin(string nombreUsuario, string contraseña)
+        {
+            var login = await _context.Usuario
+                .Where(u => u.NombreUsuario == nombreUsuario && u.Contraseña == contraseña)
+                .Select(u => new ResponseLoginDto
+                {
+                    NombreUsuario = u.NombreUsuario,
+                    Rol = u.RolNavegator.Descripcion,
+                    Correo = u.Correo
+                })
+                .FirstOrDefaultAsync();
+
+            return login;
         }
     }
 }

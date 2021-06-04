@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,34 @@ namespace Template.API.Controllers
             if (createdUsuario == null)
                 return Problem(detail: "No se ha podido crear el usuario", statusCode: 500);
 
-            return Created(uri: $"api/usuario/{createdUsuario.UsuarioId}", createdUsuario);
+            var usuarioRequest = new RequestLoginDto 
+            { NombreUsuario = createdUsuario.NombreUsuario, Contraseña = createdUsuario.Contraseña };
+            
+            string token = await _usuarioService.AuthenticateUser(usuarioRequest);
+
+            return (token != null) 
+                ? Created(uri: $"api/usuario/{createdUsuario.UsuarioId}", new ResponseTokenDto { Token = token }) 
+                : Problem(statusCode: 500, detail: "Ha ocurrido un problema al intentar registrar el usuario.");
+        }
+
+        [AllowAnonymous]
+        [HttpPost("/login")]
+        public async Task<ActionResult> PostLogin([FromBody] RequestLoginDto request)
+        {
+            string token = await _usuarioService.AuthenticateUser(request);
+            return (token != null) ? Ok(token) : Problem(statusCode: 401, detail: "No se ha ingresado un usuario/contraseña válido");
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult GetClaim()
+        {
+            var currentUser = HttpContext.User;
+
+            if (currentUser.HasClaim(u => u.Type == "Rol"))
+                return Ok();
+
+            return NotFound();
         }
     }
 }

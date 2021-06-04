@@ -1,11 +1,14 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
 using Template.AccessData;
 using Template.AccessData.Commands;
 using Template.AccessData.Queries;
@@ -30,10 +33,25 @@ namespace Template.API
         {
             services.AddControllers();
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+               .AddJwtBearer(options =>
+               {
+                   options.TokenValidationParameters = new TokenValidationParameters
+                   {
+                       ValidateIssuer = true,
+                       ValidateAudience = true,
+                       ValidateLifetime = true,
+                       ValidateIssuerSigningKey = true,
+                       ValidIssuer = Configuration["Jwt:Issuer"],
+                       ValidAudience = Configuration["Jwt:Issuer"],
+                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                   };
+               });
+
             var mapperConfig = new MapperConfiguration(mc =>
-           {
-               mc.AddProfile(new UsuarioProfile());
-           });
+            {
+                mc.AddProfile(new UsuarioProfile());
+            });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
             // Configuration busca diferentes opciones en appsettings.json; en este caso, le pedimos
@@ -60,6 +78,8 @@ namespace Template.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseAuthentication();
+
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {

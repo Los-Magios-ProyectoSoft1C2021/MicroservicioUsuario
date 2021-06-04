@@ -7,6 +7,6 @@ namespace Template.Domain.Queries
     public interface IUsuarioQuery
     {
         Task<List<ResponseUsuarioDto>> GetAll();
-
+        Task<ResponseLoginDto> GetUsuarioLogin(string nombreUsuario, string contraseña);
     }
 }

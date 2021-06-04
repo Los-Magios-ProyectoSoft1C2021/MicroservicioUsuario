@@ -9,5 +9,6 @@ namespace Template.Application.Services
     {
         Task<ResponseUsuarioDto> Create(RequestUsuarioDto request);
         Task<List<ResponseUsuarioDto>> GetAll();
+        Task<string> AuthenticateUser(RequestLoginDto request);
     }
 }
