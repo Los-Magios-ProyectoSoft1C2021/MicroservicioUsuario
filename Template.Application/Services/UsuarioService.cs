@@ -54,9 +54,10 @@ namespace Template.Application.Services
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[] {
-                new Claim("Usuario", usuarioData.NombreUsuario),
+                new Claim("NombreUsuario", usuarioData.NombreUsuario),
+                new Claim("UsuarioId", usuarioData.UsuarioId.ToString()),
                 new Claim("Rol", usuarioData.Rol),
-                new Claim("Correo", usuarioData.Correo),
+                new Claim("Email", usuarioData.Correo),
             };
 
             var token = new JwtSecurityToken(_configuration["Jwt:Issuer"],

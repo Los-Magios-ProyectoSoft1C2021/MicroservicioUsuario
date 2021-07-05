@@ -10,7 +10,7 @@ using Template.AccessData;
 namespace Template.AccessData.Migrations
 {
     [DbContext(typeof(UsuarioDbContext))]
-    [Migration("20210604142727_init")]
+    [Migration("20210705032354_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -114,6 +114,36 @@ namespace Template.AccessData.Migrations
                     b.HasIndex("RolId");
 
                     b.ToTable("Usuario");
+
+                    b.HasData(
+                        new
+                        {
+                            UsuarioId = new Guid("517a046d-a1f0-4760-81ff-e4c6685fcedf"),
+                            Apellido = "Principal",
+                            Contraseña = "Admin12345",
+                            Correo = "admin@bookingunaj.com",
+                            Dni = 31252875,
+                            Imagen = "/img/user.png",
+                            Nacionalidad = "Argentina",
+                            Nombre = "Admin",
+                            NombreUsuario = "admin",
+                            RolId = 2,
+                            Telefono = "4444-5555"
+                        },
+                        new
+                        {
+                            UsuarioId = new Guid("8e58b2e3-fca5-4b65-9c99-32a418fb7336"),
+                            Apellido = "Test",
+                            Contraseña = "Test12345",
+                            Correo = "test@bookingunaj.com",
+                            Dni = 1111111,
+                            Imagen = "/img/user.png",
+                            Nacionalidad = "Argentina",
+                            Nombre = "Usuario",
+                            NombreUsuario = "test",
+                            RolId = 1,
+                            Telefono = "4444-5555"
+                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Usuario", b =>

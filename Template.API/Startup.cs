@@ -48,6 +48,15 @@ namespace Template.API
                    };
                });
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminOnly", policy => 
+                    policy.RequireClaim("Rol", "Admin"));
+
+                options.AddPolicy("UsuarioOnly", policy =>
+                    policy.RequireClaim("Rol", "Usuario"));
+            });
+
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new UsuarioProfile());
@@ -78,8 +87,6 @@ namespace Template.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseAuthentication();
-
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
@@ -95,6 +102,7 @@ namespace Template.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

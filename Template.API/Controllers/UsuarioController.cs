@@ -22,6 +22,7 @@ namespace Template.API.Controllers
             _usuarioService = usuarioService;
         }
         
+        [Authorize(Policy = "AdminOnly")]
         [HttpGet]
         public async Task<ActionResult<List<ResponseUsuarioDto>>> GetUsuarios()
         {
@@ -41,7 +42,6 @@ namespace Template.API.Controllers
             { NombreUsuario = createdUsuario.NombreUsuario, Contraseña = createdUsuario.Contraseña };
             
             string token = await _usuarioService.AuthenticateUser(usuarioRequest);
-
             return (token != null) 
                 ? Created(uri: $"api/usuario/{createdUsuario.UsuarioId}", new ResponseTokenDto { Token = token }) 
                 : Problem(statusCode: 500, detail: "Ha ocurrido un problema al intentar registrar el usuario.");
@@ -52,10 +52,10 @@ namespace Template.API.Controllers
         public async Task<ActionResult> PostLogin([FromBody] RequestLoginDto request)
         {
             string token = await _usuarioService.AuthenticateUser(request);
-            return (token != null) ? Ok(token) : Problem(statusCode: 401, detail: "No se ha ingresado un usuario/contraseña válido");
+            return (token != null) ? Ok(new ResponseTokenDto { Token = token }) : Problem(statusCode: 401, detail: "No se ha ingresado un usuario/contraseña válido");
         }
 
-        [Authorize]
+        [Authorize(Policy = "AdminOnly")]
         [HttpGet("rol")]
         public ActionResult GetClaim()
         {

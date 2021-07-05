@@ -45,6 +45,7 @@ namespace Template.AccessData.Queries
                 .Where(u => u.NombreUsuario == nombreUsuario && u.Contraseña == contraseña)
                 .Select(u => new ResponseLoginDto
                 {
+                    UsuarioId = u.UsuarioId,
                     NombreUsuario = u.NombreUsuario,
                     Rol = u.RolNavegator.Nombre,
                     Correo = u.Correo

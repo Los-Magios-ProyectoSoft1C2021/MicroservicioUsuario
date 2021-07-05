@@ -58,6 +58,16 @@ namespace Template.AccessData.Migrations
                 columns: new[] { "RolId", "Descripcion", "Nombre" },
                 values: new object[] { 2, "El admin es aquel que puede ver los usuarios que hicieron reservas y modificar info de los hoteles", "Admin" });
 
+            migrationBuilder.InsertData(
+                table: "Usuario",
+                columns: new[] { "UsuarioId", "Apellido", "Contraseña", "Correo", "Dni", "Imagen", "Nacionalidad", "Nombre", "NombreUsuario", "RolId", "Telefono" },
+                values: new object[] { new Guid("8e58b2e3-fca5-4b65-9c99-32a418fb7336"), "Test", "Test12345", "test@bookingunaj.com", 1111111, "/img/user.png", "Argentina", "Usuario", "test", 1, "4444-5555" });
+
+            migrationBuilder.InsertData(
+                table: "Usuario",
+                columns: new[] { "UsuarioId", "Apellido", "Contraseña", "Correo", "Dni", "Imagen", "Nacionalidad", "Nombre", "NombreUsuario", "RolId", "Telefono" },
+                values: new object[] { new Guid("517a046d-a1f0-4760-81ff-e4c6685fcedf"), "Principal", "Admin12345", "admin@bookingunaj.com", 31252875, "/img/user.png", "Argentina", "Admin", "admin", 2, "4444-5555" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Usuario_RolId",
                 table: "Usuario",
