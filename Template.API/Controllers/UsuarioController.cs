@@ -60,13 +60,11 @@ namespace Template.API.Controllers
         public ActionResult GetClaim()
         {
             var currentUser = HttpContext.User;
-
-            if (currentUser.HasClaim(u => u.Type == "Rol")) {
-                var rol = currentUser.FindFirst("Rol");
+            var rol = currentUser.FindFirst("Rol");
+            if (rol != null)
                 return Ok(rol.Value);
-            }
 
-            return NotFound("No tiene un rol");
+            return NotFound("No tiene un rol"); 
         }
     }
 }
