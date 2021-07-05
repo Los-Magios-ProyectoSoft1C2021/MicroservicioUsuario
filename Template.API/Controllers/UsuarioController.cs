@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Template.Application.Services;
 using Template.Domain.DTOs.Request;
@@ -21,7 +18,7 @@ namespace Template.API.Controllers
         {
             _usuarioService = usuarioService;
         }
-        
+
         [Authorize(Policy = "AdminOnly")]
         [HttpGet]
         public async Task<ActionResult<List<ResponseUsuarioDto>>> GetUsuarios()
@@ -38,12 +35,12 @@ namespace Template.API.Controllers
             if (createdUsuario == null)
                 return Problem(detail: "No se ha podido crear el usuario", statusCode: 500);
 
-            var usuarioRequest = new RequestLoginDto 
+            var usuarioRequest = new RequestLoginDto
             { NombreUsuario = createdUsuario.NombreUsuario, Contraseña = createdUsuario.Contraseña };
-            
+
             string token = await _usuarioService.AuthenticateUser(usuarioRequest);
-            return (token != null) 
-                ? Created(uri: $"api/usuario/{createdUsuario.UsuarioId}", new ResponseTokenDto { Token = token }) 
+            return (token != null)
+                ? Created(uri: $"api/usuario/{createdUsuario.UsuarioId}", new ResponseTokenDto { Token = token })
                 : Problem(statusCode: 500, detail: "Ha ocurrido un problema al intentar registrar el usuario.");
         }
 
@@ -64,7 +61,7 @@ namespace Template.API.Controllers
             if (rol != null)
                 return Ok(rol.Value);
 
-            return NotFound("No tiene un rol"); 
+            return NotFound("No tiene un rol");
         }
     }
 }

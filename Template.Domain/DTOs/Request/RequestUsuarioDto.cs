@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Template.Domain.DTOs.Request
+﻿namespace Template.Domain.DTOs.Request
 {
     public class RequestUsuarioDto
     {

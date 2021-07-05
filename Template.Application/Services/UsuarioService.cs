@@ -45,7 +45,7 @@ namespace Template.Application.Services
         public async Task<string> AuthenticateUser(RequestLoginDto request)
         {
             var usuarioData = await _query.GetUsuarioLogin(request.NombreUsuario, request.Contraseña);
-            return (usuarioData != null) ? GenerateJSONWebToken(usuarioData) : null; 
+            return (usuarioData != null) ? GenerateJSONWebToken(usuarioData) : null;
         }
 
         private string GenerateJSONWebToken(ResponseLoginDto usuarioData)

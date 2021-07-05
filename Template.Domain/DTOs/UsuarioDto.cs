@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Template.Domain.DTOs
+﻿namespace Template.Domain.DTOs
 {
     public class UsuarioDto
     {

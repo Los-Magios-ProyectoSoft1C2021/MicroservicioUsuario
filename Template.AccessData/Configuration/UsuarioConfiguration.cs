@@ -51,8 +51,8 @@ namespace Template.AccessData.Configurations
             usuario.HasOne<Rol>(p => p.RolNavegator).WithMany(p => p.Usuario).HasForeignKey(k => k.RolId);
 
             usuario.HasData(
-                new Usuario 
-                { 
+                new Usuario
+                {
                     UsuarioId = Guid.NewGuid(),
                     RolId = 2,
                     Nombre = "Admin",
