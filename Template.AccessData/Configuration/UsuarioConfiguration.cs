@@ -53,12 +53,12 @@ namespace Template.AccessData.Configurations
             usuario.HasData(
                 new Usuario
                 {
-                    UsuarioId = Guid.NewGuid(),
+                    UsuarioId = 1,
                     RolId = 2,
                     Nombre = "Admin",
                     Apellido = "Principal",
                     NombreUsuario = "admin",
-                    Contraseña = "Admin12345",
+                    Contraseña = "12345678",
                     Dni = 31252875,
                     Correo = "admin@bookingunaj.com",
                     Telefono = "4444-5555",
@@ -67,12 +67,12 @@ namespace Template.AccessData.Configurations
                 },
                 new Usuario
                 {
-                    UsuarioId = Guid.NewGuid(),
+                    UsuarioId = 2,
                     RolId = 1,
                     Nombre = "Usuario",
                     Apellido = "Test",
                     NombreUsuario = "test",
-                    Contraseña = "Test12345",
+                    Contraseña = "12345678",
                     Dni = 1111111,
                     Correo = "test@bookingunaj.com",
                     Telefono = "4444-5555",

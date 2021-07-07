@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
 namespace Template.AccessData.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,7 +24,8 @@ namespace Template.AccessData.Migrations
                 name: "Usuario",
                 columns: table => new
                 {
-                    UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RolId = table.Column<int>(type: "int", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     Apellido = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
@@ -61,12 +61,12 @@ namespace Template.AccessData.Migrations
             migrationBuilder.InsertData(
                 table: "Usuario",
                 columns: new[] { "UsuarioId", "Apellido", "Contraseña", "Correo", "Dni", "Imagen", "Nacionalidad", "Nombre", "NombreUsuario", "RolId", "Telefono" },
-                values: new object[] { new Guid("8e58b2e3-fca5-4b65-9c99-32a418fb7336"), "Test", "Test12345", "test@bookingunaj.com", 1111111, "/img/user.png", "Argentina", "Usuario", "test", 1, "4444-5555" });
+                values: new object[] { 2, "Test", "12345678", "test@bookingunaj.com", 1111111, "/img/user.png", "Argentina", "Usuario", "test", 1, "4444-5555" });
 
             migrationBuilder.InsertData(
                 table: "Usuario",
                 columns: new[] { "UsuarioId", "Apellido", "Contraseña", "Correo", "Dni", "Imagen", "Nacionalidad", "Nombre", "NombreUsuario", "RolId", "Telefono" },
-                values: new object[] { new Guid("517a046d-a1f0-4760-81ff-e4c6685fcedf"), "Principal", "Admin12345", "admin@bookingunaj.com", 31252875, "/img/user.png", "Argentina", "Admin", "admin", 2, "4444-5555" });
+                values: new object[] { 1, "Principal", "12345678", "admin@bookingunaj.com", 31252875, "/img/user.png", "Argentina", "Admin", "admin", 2, "4444-5555" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Usuario_RolId",

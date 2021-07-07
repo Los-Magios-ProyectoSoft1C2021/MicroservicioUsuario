@@ -4,7 +4,7 @@ namespace Template.Domain.DTOs.Response
 {
     public class ResponseUsuarioDto
     {
-        public Guid UsuarioId { get; set; }
+        public int UsuarioId { get; set; }
         public string Rol { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
