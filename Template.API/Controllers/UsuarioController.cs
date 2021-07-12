@@ -27,6 +27,26 @@ namespace Template.API.Controllers
             return Ok(usuarios);
         }
 
+        [Authorize(Policy = "UsuarioOnly")]
+        [HttpGet("id")]
+        public async Task<ActionResult<ResponseUsuarioDto>> GetUsuario()
+        {
+            var usuario = HttpContext.User;
+            var usuarioId = usuario.FindFirst("UsuarioId");
+
+            if (usuarioId != null)
+            {
+                var u = await _usuarioService.GetById(int.Parse(usuarioId.Value));
+
+                if (u != null)
+                    return Ok(u);
+                else
+                    return NotFound();
+            }
+
+            return Unauthorized();
+        }
+
         [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult> PostUsuario(RequestUsuarioDto usuario)

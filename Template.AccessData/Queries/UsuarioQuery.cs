@@ -39,6 +39,29 @@ namespace Template.AccessData.Queries
             return usuarios;
         }
 
+        public async Task<ResponseUsuarioDto> GetById(int usuarioId)
+        {
+            var usuario = await _context.Usuario
+                .Where(u => u.UsuarioId == usuarioId)
+                .Select(u => new ResponseUsuarioDto
+                {
+                    UsuarioId = u.UsuarioId,
+                    Rol = u.RolNavegator.Descripcion,
+                    Nombre = u.Nombre,
+                    Apellido = u.Apellido,
+                    NombreUsuario = u.NombreUsuario,
+                    Contraseña = u.Contraseña,
+                    Dni = u.Dni,
+                    Correo = u.Correo,
+                    Telefono = u.Telefono,
+                    Nacionalidad = u.Nacionalidad,
+                    Imagen = u.Imagen,
+                })
+                .FirstOrDefaultAsync();
+
+            return usuario;
+        } 
+
         public async Task<ResponseLoginDto> GetUsuarioLogin(string nombreUsuario, string contraseña)
         {
             var login = await _context.Usuario

@@ -41,6 +41,10 @@ namespace Template.Application.Services
             return await _query.GetAll();
         }
 
+        public async Task<ResponseUsuarioDto> GetById(int usuarioId)
+        {
+            return await _query.GetById(usuarioId);
+        }
 
         public async Task<string> AuthenticateUser(RequestLoginDto request)
         {
