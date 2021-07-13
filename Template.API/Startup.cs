@@ -57,6 +57,9 @@ namespace Template.API
 
                 options.AddPolicy("UsuarioOnly", policy =>
                     policy.RequireClaim("Rol", "Usuario"));
+
+                options.AddPolicy("AdminAndUsuarioOnly", policy =>
+                    policy.RequireClaim("Rol", "Admin", "Usuario"));
             });
 
             var mapperConfig = new MapperConfiguration(mc =>

@@ -27,7 +27,7 @@ namespace Template.API.Controllers
             return Ok(usuarios);
         }
 
-        [Authorize(Policy = "UsuarioOnly")]
+        [Authorize(Policy = "AdminAndUsuarioOnly")]
         [HttpGet("id")]
         public async Task<ActionResult<ResponseUsuarioDto>> GetUsuario()
         {
