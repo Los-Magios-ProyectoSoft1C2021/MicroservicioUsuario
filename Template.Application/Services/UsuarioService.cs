@@ -72,6 +72,10 @@ namespace Template.Application.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
+         
+        public async Task<bool> CheckIfExistsByNombreUsuario(string nombreUsuario)
+        {
+            return await _query.CheckIfExistsByNombreUsuario(nombreUsuario);
+        }
     }
 }

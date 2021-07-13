@@ -9,7 +9,7 @@ using Template.AccessData;
 namespace Template.AccessData.Migrations
 {
     [DbContext(typeof(UsuarioDbContext))]
-    [Migration("20210707232345_Init")]
+    [Migration("20210713032640_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -110,6 +110,9 @@ namespace Template.AccessData.Migrations
                         .HasColumnType("nvarchar(16)");
 
                     b.HasKey("UsuarioId");
+
+                    b.HasIndex("NombreUsuario")
+                        .IsUnique();
 
                     b.HasIndex("RolId");
 

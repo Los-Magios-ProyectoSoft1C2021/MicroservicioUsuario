@@ -1,12 +1,13 @@
 ﻿using FluentValidation;
 using System.Text.RegularExpressions;
+using Template.Application.Services;
 using Template.Domain.DTOs.Request;
 
 namespace Template.API.Validation
 {
     public class UsuarioValidator : AbstractValidator<RequestUsuarioDto>
     {
-        public UsuarioValidator()
+        public UsuarioValidator(IUsuarioService service)
         {
             RuleFor(u => u.Dni)
                 .GreaterThan(0).WithMessage("El DNI ingresado no es válido")
@@ -21,8 +22,12 @@ namespace Template.API.Validation
                 .Must(x => Regex.IsMatch(x, @"(?i)^(?:(?![×Þß÷þø])[-'0-9a-zÀ-ÿ])+$")).WithMessage("El apellido sólo debe contener letras");
 
             RuleFor(u => u.NombreUsuario)
-                .MinimumLength(6).WithMessage("El nombre de usuario debe tener 8 o más caracteres")
-                .Must(x => Regex.IsMatch(x, @"^[a-zA-Z0-9]+$")).WithMessage("El ");
+                .MinimumLength(4).WithMessage("El nombre de usuario debe tener 4 o más caracteres")
+                .Must(x => Regex.IsMatch(x, @"^[a-zA-Z0-9]+$")).WithMessage("El nombre de usuario sólo puede contener letras y números")
+                .MustAsync(async (x, cancellable) =>
+                {
+                    return !(await service.CheckIfExistsByNombreUsuario(x));
+                }).WithMessage("El nombre de usuario ya está registrado");
 
             RuleFor(u => u.Contraseña)
                 .MinimumLength(8).WithMessage("El contraseña debe tener al menos 8 caracteres");

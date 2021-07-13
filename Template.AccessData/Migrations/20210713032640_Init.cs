@@ -69,6 +69,12 @@ namespace Template.AccessData.Migrations
                 values: new object[] { 1, "Principal", "12345678", "admin@bookingunaj.com", 31252875, "/img/user.png", "Argentina", "Admin", "admin", 2, "4444-5555" });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Usuario_NombreUsuario",
+                table: "Usuario",
+                column: "NombreUsuario",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Usuario_RolId",
                 table: "Usuario",
                 column: "RolId");

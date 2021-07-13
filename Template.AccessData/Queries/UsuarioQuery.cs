@@ -77,5 +77,13 @@ namespace Template.AccessData.Queries
 
             return login;
         }
+
+        public async Task<bool> CheckIfExistsByNombreUsuario(string nombreUsuario)
+        {
+            var exists = await _context.Usuario
+                .AnyAsync(u => u.NombreUsuario == nombreUsuario);
+
+            return exists;
+        }
     }
 }

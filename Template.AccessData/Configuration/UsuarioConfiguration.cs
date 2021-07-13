@@ -7,50 +7,53 @@ namespace Template.AccessData.Configurations
 {
     public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
     {
-        public void Configure(EntityTypeBuilder<Usuario> usuario)
+        public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-            usuario.HasKey(p => p.UsuarioId);
-            usuario.Property(p => p.UsuarioId)
+            builder.HasKey(p => p.UsuarioId);
+            builder.Property(p => p.UsuarioId)
                    .ValueGeneratedOnAdd();
 
-            usuario.Property(p => p.Nombre)
+            builder.Property(p => p.Nombre)
                    .IsRequired(true)
                    .HasMaxLength(64);
 
-            usuario.Property(p => p.Apellido)
+            builder.Property(p => p.Apellido)
                    .IsRequired(true)
                    .HasMaxLength(64);
 
-            usuario.Property(p => p.Dni)
+            builder.Property(p => p.Dni)
                    .IsRequired(true);
 
-            usuario.Property(p => p.NombreUsuario)
+            builder.Property(p => p.NombreUsuario)
                    .IsRequired(true)
                    .HasMaxLength(64);
 
-            usuario.Property(p => p.Contraseña)
+            builder.HasIndex(p => p.NombreUsuario)
+                .IsUnique();
+
+            builder.Property(p => p.Contraseña)
                    .IsRequired(true)
                    .HasMaxLength(64);
 
-            usuario.Property(p => p.Correo)
+            builder.Property(p => p.Correo)
                    .IsRequired(true)
                    .HasMaxLength(128);
 
-            usuario.Property(p => p.Telefono)
+            builder.Property(p => p.Telefono)
                    .IsRequired(true)
                    .HasMaxLength(16);
 
-            usuario.Property(p => p.Imagen)
+            builder.Property(p => p.Imagen)
                    .IsRequired(true)
                    .HasMaxLength(128);
 
-            usuario.Property(p => p.Nacionalidad)
+            builder.Property(p => p.Nacionalidad)
                    .IsRequired(true)
                    .HasMaxLength(128);
 
-            usuario.HasOne<Rol>(p => p.RolNavegator).WithMany(p => p.Usuario).HasForeignKey(k => k.RolId);
+            builder.HasOne<Rol>(p => p.RolNavegator).WithMany(p => p.Usuario).HasForeignKey(k => k.RolId);
 
-            usuario.HasData(
+            builder.HasData(
                 new Usuario
                 {
                     UsuarioId = 1,

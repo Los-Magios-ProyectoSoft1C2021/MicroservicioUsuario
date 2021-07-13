@@ -47,6 +47,18 @@ namespace Template.API.Controllers
             return Unauthorized();
         }
 
+        [Authorize(Policy = "AdminOnly")]
+        [HttpGet("id/{id:int}")]
+        public async Task<ActionResult> GetUsuarioById(int id)
+        {
+            var u = await _usuarioService.GetById(id);
+
+            if (u != null)
+                return Ok(u);
+            else
+                return NotFound();
+        }
+
         [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult> PostUsuario(RequestUsuarioDto usuario)
@@ -69,7 +81,9 @@ namespace Template.API.Controllers
         public async Task<ActionResult> PostLogin([FromBody] RequestLoginDto request)
         {
             string token = await _usuarioService.AuthenticateUser(request);
-            return (token != null) ? Ok(new ResponseTokenDto { Token = token }) : Problem(statusCode: 401, detail: "No se ha ingresado un usuario/contraseña válido");
+            return (token != null) ? 
+                Ok(new ResponseTokenDto { Token = token }) : 
+                Problem(statusCode: 401, detail: "No se ha ingresado un usuario/contraseña válido");
         }
 
         [Authorize(Policy = "AdminOnly")]

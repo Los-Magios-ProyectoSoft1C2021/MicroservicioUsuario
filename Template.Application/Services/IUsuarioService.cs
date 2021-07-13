@@ -11,5 +11,6 @@ namespace Template.Application.Services
         Task<List<ResponseUsuarioDto>> GetAll();
         Task<ResponseUsuarioDto> GetById(int usuarioId);
         Task<string> AuthenticateUser(RequestLoginDto request);
+        Task<bool> CheckIfExistsByNombreUsuario(string nombreUsuario);
     }
 }

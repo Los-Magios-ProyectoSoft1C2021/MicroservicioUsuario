@@ -109,6 +109,9 @@ namespace Template.AccessData.Migrations
 
                     b.HasKey("UsuarioId");
 
+                    b.HasIndex("NombreUsuario")
+                        .IsUnique();
+
                     b.HasIndex("RolId");
 
                     b.ToTable("Usuario");

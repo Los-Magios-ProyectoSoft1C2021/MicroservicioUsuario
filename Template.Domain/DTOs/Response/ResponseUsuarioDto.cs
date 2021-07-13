@@ -15,6 +15,5 @@ namespace Template.Domain.DTOs.Response
         public string Telefono { get; set; }
         public string Nacionalidad { get; set; }
         public string Imagen { get; set; }
-
     }
 }
