@@ -15,11 +15,11 @@ namespace Template.API.Validation
 
             RuleFor(u => u.Nombre)
                 .NotEmpty().WithMessage("El nombre no puede estar vacío")
-                .Must(x => Regex.IsMatch(x, @"(?i)^(?:(?![×Þß÷þø])[-'0-9a-zÀ-ÿ])+$")).WithMessage("El nombre sólo debe contener letras");
+                .Must(x => Regex.IsMatch(x, @"(?i)^(?:(?![×Þß÷þø])[ -'0-9a-zÀ-ÿ])+$")).WithMessage("El nombre sólo debe contener letras");
 
             RuleFor(u => u.Apellido)
                 .NotEmpty().WithMessage("El apellido no puede estar vacío")
-                .Must(x => Regex.IsMatch(x, @"(?i)^(?:(?![×Þß÷þø])[-'0-9a-zÀ-ÿ])+$")).WithMessage("El apellido sólo debe contener letras");
+                .Must(x => Regex.IsMatch(x, @"(?i)^(?:(?![×Þß÷þø])[ -'0-9a-zÀ-ÿ])+$")).WithMessage("El apellido sólo debe contener letras");
 
             RuleFor(u => u.NombreUsuario)
                 .MinimumLength(4).WithMessage("El nombre de usuario debe tener 4 o más caracteres")
